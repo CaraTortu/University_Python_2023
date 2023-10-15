@@ -107,7 +107,7 @@ def handle_admin(option_chosen: int, stadium: Stadium):
 
 # Books a new ticket
 def book_ticket(stadium: Stadium, user: User):
-    print(stadium)
+    print(stadium.__str__(user=user))
     
     # Make sure that the seat isnt taken
     while True: 
@@ -151,12 +151,12 @@ def print_tickets(user: User):
 
     for i, ticket in enumerate(user.tickets):
         print(f"{i+1}. {ticket.ticket_string}")
-    
+
 # Handle menu options for logged in users
 def handle_logged_in(current_user: User, option_chosen: int, stadium: Stadium):
     match option_chosen:
         case 1:
-            print(stadium)
+            print(stadium.__str__(user=current_user))
         case 2:
             book_ticket(stadium, current_user)
         case 3:

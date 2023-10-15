@@ -48,4 +48,6 @@ def run_all_tests():
 
     # print results
     print(f"[i] Total passed: {total_passed}/{total_tests}")
-
+    
+    # Exit gracefully
+    exit(0)

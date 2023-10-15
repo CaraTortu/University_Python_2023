@@ -1,6 +1,8 @@
 from classes.user import User
 from classes.ticket import Ticket
 
+from copy import deepcopy
+
 COLUMNS = 8
 ROWS = 5
 STADIUM_LETTER = "P"
@@ -20,7 +22,19 @@ class Stadium:
         # Users that exist
         self.users = []
 
-    def __str__(self) -> str:
+    # Returns the string format of this class
+    # Takes an optional user object. If its supplied, it will colour the seats the user has booked with red.
+    def __str__(self, user=None) -> str:
+        # Create clone of the seats to not modify the original list 
+        seats = deepcopy(self.seats)
+
+        # If a user is passed in, colour the seats booked
+        if user:
+            for ticket in user.tickets:
+                # Get the row and column from the ticket format 
+                seat_row, seat_column = (int(i) for i in ticket.ticket_string[1:3])
+                seats[seat_row][seat_column] = f"\033[0;31mX\033[0m"
+
         # Add column numeration
         s = "    1 2 3 4 5 6 7 8\n"
         s += "--------------------\n"
@@ -29,8 +43,11 @@ class Stadium:
         for i in range(ROWS):
             s += f"{i+1} | "
             for j in range(COLUMNS):
-                s += self.seats[i][j] + " "
+                # Make seats taken blue
+                if seats[i][j] == "X":
+                    seats[i][j] = f"\033[0;34mX\033[0m"
 
+                s += seats[i][j] + " "
             s += "\n"
 
         # Return the string

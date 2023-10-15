@@ -4,8 +4,6 @@ from utils.test import run_all_tests
 from utils.utils import handle_not_logged_in, handle_logged_in, handle_admin
 
 def print_menu():
-    global current_user
-
     # Define the menu
     if current_user == None:
         menu = "\nRugby world cup:\n"
@@ -69,18 +67,23 @@ def main(stadium: Stadium):
     return True
 
 if __name__ == "__main__":
-    # UNCOMMENT TO RUN ALL TESTS
-    # run_all_tests()
+    # run_all_tests() # UNCOMMENT TO RUN ALL TESTS
 
+    # Create instance of the stadium class
     stadium = Stadium()
+
+    # Keep track of the current User
+    # It will be of type None when there is no logged in user. 
+    # It will be of type User when the user is logged in. 
     current_user = None
 
-    # Add admin User
+    # Add admin User with id of "0000" and pin of "1234"
     admin = User("Admin")
     admin.is_admin = True
     admin.id = "0000"
     admin.pin = "1234"
 
+    # Add the user to the stadium
     stadium.users.append(admin)
 
     # Run main loop
