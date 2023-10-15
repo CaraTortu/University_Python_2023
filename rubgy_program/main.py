@@ -17,6 +17,7 @@ def print_menu():
         menu += "1. List details of all registered users\n"
         menu += "2. Search for ticket by user ID\n"
         menu += "3. Validate Ticket\n"
+        menu += "4. Log out\n"
 
     else:
         menu = f"\nHi {current_user.name}! Choose your option:\n"
@@ -58,6 +59,7 @@ def main(stadium: Stadium):
     
     elif current_user.is_admin:
         handle_admin(option_chosen, stadium)
+        if option_chosen == 4: current_user = None
     
     else: 
         handle_logged_in(current_user, option_chosen, stadium)
