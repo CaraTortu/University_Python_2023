@@ -1,9 +1,11 @@
-from stadium import Stadium
-from user import User
-from test import run_all_tests
-from utils import handle_not_logged_in, handle_logged_in, handle_admin
+from classes.stadium import Stadium
+from classes.user import User
+from utils.test import run_all_tests
+from utils.utils import handle_not_logged_in, handle_logged_in, handle_admin
 
 def print_menu():
+    global current_user
+
     # Define the menu
     if current_user == None:
         menu = "\nRugby world cup:\n"
@@ -11,7 +13,7 @@ def print_menu():
         menu += "2. Log in\n"
 
     elif current_user.is_admin:
-        menu = "\nHi admin! What would you like to do?: \n"
+        menu = f"\nHi {current_user.name}! What would you like to do?: \n"
         menu += "1. List details of all registered users\n"
         menu += "2. Search for ticket by user ID\n"
         menu += "3. Validate Ticket\n"

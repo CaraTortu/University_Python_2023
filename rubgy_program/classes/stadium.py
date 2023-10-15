@@ -1,5 +1,5 @@
-from user import User
-from ticket import Ticket
+from classes.user import User
+from classes.ticket import Ticket
 
 COLUMNS = 8
 ROWS = 5
@@ -36,6 +36,7 @@ class Stadium:
         # Return the string
         return s
 
+    # Returns whether the seat is taken or not
     def is_position_available(self, column: int, row: int) -> bool:
         return self.seats[row][column] == "O"
 

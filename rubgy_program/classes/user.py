@@ -1,5 +1,4 @@
-from ticket import Ticket
-
+from classes.ticket import Ticket
 import random
 import string
 

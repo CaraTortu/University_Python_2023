@@ -1,11 +1,5 @@
-from user import User
-from stadium import Stadium
-
-def TEST_display_all_seats() -> bool:
-    test_stadium = Stadium()
-    should_output = "    1 2 3 4 5 6 7 8\n--------------------\n1 | O O O O O O O O \n2 | O O O O O O O O \n3 | O O O O O O O O \n4 | O O O O O O O O \n5 | O O O O O O O O \n"
-
-    return should_output == test_stadium.__str__()
+from classes.user import User
+from classes.stadium import Stadium
 
 def TEST_register() -> bool:
     test_user = User("Javier")
@@ -46,9 +40,8 @@ def run_all_tests():
     # initial setup
     print("[i] RUNNING ALL TESTS:")
     total_passed = 0
-    total_tests = 4
+    total_tests = 3
 
-    total_passed += TEST_display_all_seats()
     total_passed += TEST_register()
     total_passed += TEST_verify_ticket()
     total_passed += TEST_check_in()

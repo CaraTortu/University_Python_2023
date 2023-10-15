@@ -1,8 +1,9 @@
-from user import User
-from stadium import Stadium, ROWS, COLUMNS
+from classes.user import User
+from classes.stadium import Stadium, ROWS, COLUMNS
 
 ################ NOT LOGGED IN ################## 
 
+# Registers a new user
 def register() -> User:
     # Create user object
     user_name = input("What is your name?: ")   
@@ -13,6 +14,7 @@ def register() -> User:
     
     return user
 
+# Logs in a new user
 def log_in(stadium: Stadium) -> User | None:
     user_id = input("Please enter your user ID: ")
     user_pin = input("Please enter your pin: ")
@@ -25,7 +27,7 @@ def log_in(stadium: Stadium) -> User | None:
     print("[-] ERROR: Invalid user ID or pin.")
     return None
 
-
+# Handles the menu selection for non-authenticated users
 def handle_not_logged_in(option_chosen: int, stadium: Stadium) -> User:
     match option_chosen:
         case 1:
@@ -38,6 +40,7 @@ def handle_not_logged_in(option_chosen: int, stadium: Stadium) -> User:
 
 ################# ADMIN ###################
 
+# Lists all the details for all users registered
 def list_user_details(stadium: Stadium):
     for i, user in enumerate(stadium.users):
         # Print user stuff
@@ -55,6 +58,7 @@ def list_user_details(stadium: Stadium):
         # Newline for format
         print()
 
+# Print the tickets assigned to the user by the supplied ID
 def search_ticket_by_user_id(stadium: Stadium):
     user_id = input("What is the user ID: ")
     
@@ -78,6 +82,7 @@ def search_ticket_by_user_id(stadium: Stadium):
     for i, ticket in enumerate(user.tickets):
         print(f"{i}. {ticket.ticket_string}")
 
+# Checks whether a ticket is invalid or not
 def validate_ticket(stadium: Stadium):
     ticket = input("Ticket to verify: ")
     does_ticket_exist = stadium.verify_ticket(ticket)[0]
@@ -88,6 +93,7 @@ def validate_ticket(stadium: Stadium):
 
     print("[+] Ticket is valid!")
 
+# Handle the options for admin users.
 def handle_admin(option_chosen: int, stadium: Stadium):
     match option_chosen:
         case 1:
@@ -99,6 +105,7 @@ def handle_admin(option_chosen: int, stadium: Stadium):
 
 ################# LOGGED IN ####################
 
+# Books a new ticket
 def book_ticket(stadium: Stadium, user: User):
     print(stadium)
     
@@ -124,8 +131,9 @@ def book_ticket(stadium: Stadium, user: User):
     # Book the ticket
     ticket = stadium.add_ticket(row, column, user)
 
-    print(f"[+] Your ticket number is: {ticket}")
+    print(f"\n[+] Your ticket number is: {ticket}")
 
+# Delete a ticket from this user
 def delete_ticket(stadium: Stadium, user: User):
     # Get a valid ticket numer
     ticket_string = ""    
@@ -135,6 +143,7 @@ def delete_ticket(stadium: Stadium, user: User):
     # Remove it
     stadium.delete_ticket(ticket_string)
 
+# Print all the tickets that belong to the user
 def print_tickets(user: User): 
     if len(user.tickets) == 0:
         print("[+] You have not booked any tickets!")
@@ -143,7 +152,7 @@ def print_tickets(user: User):
     for i, ticket in enumerate(user.tickets):
         print(f"{i+1}. {ticket.ticket_string}")
     
-
+# Handle menu options for logged in users
 def handle_logged_in(current_user: User, option_chosen: int, stadium: Stadium):
     match option_chosen:
         case 1:
