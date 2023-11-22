@@ -1,0 +1,29 @@
+{
+	"studentDetails": [
+		{
+		"name": "Aine Dunne",
+		"age": 23,
+    "course": "Business Studies",
+		"subjects": ["Accountancy", "Marketing", "Irish"]
+		},
+    {
+      "name": "Mary Doherty",
+      "age": 20,
+      "subjects": ["Python", "JavaScript", "Big Data"],
+      "course": "Computing"
+    },
+		{
+		"name": "Joan O Donnell",
+		"age": 19,
+    "course": "Computing",
+		"subjects": ["Python", "JavaScript", "SQL"]
+		},
+		{
+		"name": "Colm Ryan",
+		"age": 20,
+    "course": "Sport Science",
+		"subjects": ["Coaching", "PE", "Physio"]
+		}
+	]
+}
+
